@@ -1,6 +1,6 @@
 const request = require('request');
 
-let getWeather = (lat,lng,callback) => {
+let getWeather = (lat, lng, callback) => {
 
 request({
     url: `https://api.darksky.net/forecast/6fd990d927c48c2017e08d6da072cd12/${lat},${lng}`,
@@ -15,7 +15,6 @@ request({
     callback('Problem getting weather...')
    }
  })
-
 };
 
 module.exports.getWeather = getWeather;

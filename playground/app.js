@@ -17,21 +17,21 @@ const argv = yargs
   .argv;
 
 
-// geocode.geocodeAddress(argv.address, (errorMessage, result) => {
-//   if(errorMessage){
-//     console.log(errorMessage);
-//   } else {
-//     console.log(JSON.stringify(result, null, 2));
-//   }
-// });
-
-weather.getWeather(34.1450374,-118.1051514, (errorMessage, result) => {
+geocode.geocodeAddress(argv.address, (errorMessage, result) => {
   if(errorMessage){
     console.log(errorMessage);
   } else {
-    console.log(result);
-}
-});
+    console.log(result.address);
+    weather.getWeather(result.latitude,result.longtitude, (errorMessage, weatherResult) => {
+      if(errorMessage){
+         console.log(errorMessage);
+        } else {
+         console.log(`It's currently ${weatherResult.temperature}, but feels more like ${weatherResult.actualTemp}`);
+        }
+      });
+     }
+   });
+
 
 
 
